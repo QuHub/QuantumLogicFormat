@@ -1,0 +1,30 @@
+defaults:
+  radix: 2
+
+inputs:
+  variables: { # | (^[a-zA-Z]\a+ )+ }
+  radix: 
+    {r}: {2,3,4 | 2..4}           # r > 1
+
+outputs:
+  variables: { # | (^[a-zA-Z]\a+ )+ }
+  radix: 
+    {r}: {2,3,4 | 2..4}           # r > 1
+  
+  
+# ordered pairs
+specification: 
+  - 0000: 1111
+  - 2000: 2333
+  - 1000: 2333
+  - 0000: 2222
+
+# unordered mapping table
+specification: 
+  0000: 1111
+  2000: 2333
+  1000: 2333
+  0000: 2222
+
+implementation:
+  t1 

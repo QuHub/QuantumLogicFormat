@@ -1,0 +1,24 @@
+defaults:
+  radix: 3
+
+inputs:
+  variables: 3
+
+outputs:
+  variables: 3
+  
+specification: |
+  021 022
+  022 021
+  121 122
+  122 121
+  210 220
+  211 221
+  212 222
+  220 210
+  221 211
+  222 212
+
+circuit:
+  x12 1 2
+  x12 2 3

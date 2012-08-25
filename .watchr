@@ -12,12 +12,12 @@ def run(cmd)
 end
 
 def run_all_specs
-  run "bundle exec rspec -d --order rand"
+  run "bundle exec rspec -d "
 end
 
 def run_single_spec *spec
   spec = spec.join(' ')
-  run "rspec  #{spec} --order rand"
+  run "rspec  #{spec} "
 end
 
 def run_specs_with_shared_examples(shared_example_filename, spec_path = 'spec')

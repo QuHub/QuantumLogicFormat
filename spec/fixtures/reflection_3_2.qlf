@@ -1,0 +1,33 @@
+signature:
+  function: reflection
+
+defaults:
+  radix: 3
+
+inputs:
+  variables: 2
+
+  # variables: n | [i1,i2,i3, ....in]
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [i2, i4,..in]
+
+outputs:
+  variables: 2
+  
+  # variables: n | [o1,o2,o3, ....on]
+
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [a2, a4,..an]
+  
+specification: |
+  00 00
+  01 10
+  02 20
+  10 01
+  11 11
+  12 21
+  20 02
+  21 12
+  22 22

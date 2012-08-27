@@ -10,7 +10,7 @@ module Base
       end
 
       def generate
-        feyman_ladder(@count) 
+        feynman_ladder(@count) 
       end
 
 

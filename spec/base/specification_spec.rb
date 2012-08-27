@@ -19,4 +19,18 @@ describe Base::Specification do
       subject.parsed.last.should == [33, 55]
     end
   end
+
+  describe '.generate' do
+    context "reflection" do
+      it 'should generate specification for 2 variables' do
+        expected = load_fixture('reflection_3_2.qlf')
+        described_class.generate('reflection', 3, 2).should eql(expected)
+      end
+
+      it 'should generate specification for 3 variables' do
+        expected = load_fixture('reflection_3_3.qlf')
+        described_class.generate('reflection', 3, 3).should eql(expected)
+      end
+    end
+  end
 end

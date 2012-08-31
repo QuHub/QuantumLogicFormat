@@ -5,8 +5,8 @@ module Base
       def initialize(variables, opts = {:radix => 3})
         @variables = variables
         @output = []
-        super(@variables.size, opts)
-        @number_of_terms = radix**number_of_variables
+        super(@variables.size, @variables.size, opts)
+        @number_of_terms = radix**number_of_inputs
       end
 
       def generate

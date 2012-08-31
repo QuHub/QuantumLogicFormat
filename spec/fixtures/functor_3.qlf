@@ -1,0 +1,25 @@
+signature:
+  function: functor
+
+defaults:
+  radix: 3
+
+inputs:
+  variables: 3
+
+  # variables: n | [i1,i2,i3, ....in]
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [i2, i4,..in]
+
+outputs:
+  variables: 20
+  
+  # variables: n | [o1,o2,o3, ....on]
+
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [a2, a4,..an]
+  
+specification: |
+  what up doc

@@ -31,6 +31,19 @@ describe Base::Specification do
         expected = load_fixture('reflection_3_3.qlf')
         described_class.generate('reflection', 3, 3).should eql(expected)
       end
+
+      it 'should set the number of inputs variables properly' do
+        expected = load_fixture('functor_3.qlf')
+        functor = double('function class')
+        instance = double('instance of function')
+        functor.stub(:new => instance)
+        instance.stub(:number_of_inputs => 3)
+        instance.stub(:number_of_outputs => 20)
+        instance.stub(:specification => 'what up doc')
+
+        described_class.stub(:specification_class => functor)
+        described_class.generate('functor', 3, 3).should eql(expected)
+      end
     end
   end
 end

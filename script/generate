@@ -6,6 +6,21 @@ Bundler.require
 
 require './base'
 
-variables = ARGV[0].to_i
+Functions = %w(reflection full_adder quit)
 
-puts Base::Specification.generate('reflection', 3, variables)
+def usage
+  if ARGV.length < 2
+    puts <<-USAGE
+      USAGE: 
+      generate {#{Functions.join(' | ')} #Variables
+
+      Ex: generate full_adder 4
+    USAGE
+    exit
+  end
+end
+
+usage
+
+puts Base::Specification.generate(ARGV[0], 3, ARGV[1].to_i)
+

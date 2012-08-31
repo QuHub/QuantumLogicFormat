@@ -5,3 +5,4 @@ end
 
 require './base/generators/core'
 require './base/generators/reflection'
+require './base/generators/full_adder'

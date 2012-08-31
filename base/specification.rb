@@ -26,15 +26,20 @@ module Base
     end
 
     def self.specfication_class(function)
-       ("Base::Generators::%s" % function.titleize).constantize
+       ("Base::Generators::%s" % function.classify).constantize
      end
      
     def self.generate(function, radix, number_of_variables)
+      number_of_variables = number_of_variables.to_i
       template = Liquid::Template.parse(template_file)
       
       variables = ('a'..'z').take(number_of_variables)
-      specification = specfication_class(function).new(variables, :radix => radix).specification
-      template.render('function' => function, 'radix' => radix, 'number_of_variables' => number_of_variables, 'specification' => specification)
+      instance = specfication_class(function).new(variables, :radix => radix)
+      template.render('function' => function, 
+          'radix' => radix, 
+          'number_of_inputs' => instance.number_of_inputs, 
+          'number_of_outputs' => instance.number_of_outputs, 
+          'specification' => instance.specification)
     end
   end
 end

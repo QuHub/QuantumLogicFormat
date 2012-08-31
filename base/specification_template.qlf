@@ -5,7 +5,7 @@ defaults:
   radix: {{radix}}
 
 inputs:
-  variables: {{number_of_variables}}
+  variables: {{number_of_inputs}}
 
   # variables: n | [i1,i2,i3, ....in]
   # radix: r
@@ -13,7 +13,7 @@ inputs:
   #   r: [2, 4, ..n] | [i2, i4,..in]
 
 outputs:
-  variables: {{number_of_variables}}
+  variables: {{number_of_outputs}}
   
   # variables: n | [o1,o2,o3, ....on]
 

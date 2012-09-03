@@ -8,7 +8,7 @@ module Base
     include ActiveModel::Conversion
     include ActiveModel::Naming
 
-    attr_accessor :default, :inputs, :outputs, :specification
+    attr_accessor :default, :inputs, :outputs, :specification, :filename
 
     def initialize(filename=nil)
       @filename = filename
@@ -21,10 +21,6 @@ module Base
       @inputs = MintermDefinition.new(yaml['inputs'], yaml['defaults'])
       @outputs = MintermDefinition.new(yaml['outputs'], yaml['defaults'])
       @specification = Specification.new(self)
-    end
-
-    def filename
-      @filename
     end
 
     def yaml

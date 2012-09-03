@@ -12,7 +12,7 @@ describe Base::Specification do
   end
 
   describe '#parsed' do
-    it 'should do nothing if the wildcard pattern not found' do
+    it 'should return inputs and outputs of specification' do
       subject.stub(:raw => "22 33\n44 55")
       subject.parsed.size.should == 2
       subject.parsed.first.should == [22, 44]

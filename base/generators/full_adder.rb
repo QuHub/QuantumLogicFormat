@@ -24,10 +24,6 @@ module Base
       def sum_of_digits(term)
         term.split('').inject(0) {|sum, e| sum + e.to_i }
       end
-
-      def bijective_specification
-        
-      end
     end
   end
 end

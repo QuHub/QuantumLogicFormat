@@ -1,9 +1,11 @@
 class Digit < String
   attr_accessor :radix, :value
 
-  def initialize(value, radix = 10)
-    @radix = radix
-    super(value.to_s)
+  def initialize(value, *args)
+    opts = args.extract_options!
+    @radix = args[0] || 10
+    @width = opts[:width] || value.to_s.length
+    super("%0#{@width}d" % value.to_s)
   end
 
   def unshift(value)

@@ -78,12 +78,20 @@ describe_internally Base::Transformers::Bijector do
     end
   end
 
-  describe '#hamming_distance' do
+  pending '#hamming_distance' do
     let(:inputs) { ['10', '01', '02', '03'].map{|x| Digit.new(x)} }
     let(:outputs) { ['2100', '0101', '1002', '0003'].map{|x| Digit.new(x)} }
 
     it 'calcualtes the best hamming distance for each digit in output to all digits in input' do
-      subject.hamming_distance(inputs, outputs).should == [[0, 3, 3, 4], [4, 1, 1, 2]]
+      subject.hamming_distance(inputs, outputs).should == [[[0, 0], [1, 3], [2, 3], [3, 4]], [[0, 4], [1, 1], [2, 1], [3, 2]]] 
+    end
+  end
+
+  describe '#terms_for' do
+    it 'returns list of terms for the specificied number of variables and radix' do
+      subject.terms_for(4, 2).should == ["0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"] 
+      subject.terms_for(3, 3).should == ["000", "001", "002", "010", "011", "012", "020", "021", "022", "100", "101", "102", "110", "111", "112", "120", "121", "122", "200", "201", "202", "210", "211", "212", "220", "221", "222"]
+      subject.terms_for(2, 4).should == ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"]
     end
   end
 

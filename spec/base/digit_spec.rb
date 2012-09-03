@@ -17,7 +17,7 @@ describe Digit do
   end
 
   describe '#unshift' do
-    it 'inserts the diigt(s) on the left side of the number' do
+    it 'inserts the digit(s) on the left side of the number' do
       subject.unshift(3).should == 3100
       subject.unshift(999).should == 9993100
       subject.unshift('000').should == '0009993100'
@@ -25,7 +25,7 @@ describe Digit do
   end
 
   describe '#push' do
-    it 'inserts the diigt(s) on the left side of the number' do
+    it 'inserts the digit(s) on the left side of the number' do
       subject.push(3).should == 1003
       subject.push(999).should == 1003999
       subject.push('000').should == 1003999000

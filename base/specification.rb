@@ -1,19 +1,20 @@
 module Base
   class Specification
     attr_accessor :configuration
-    CompletionWildCard = ['*', '*']
-    def initialize(configuration)
-      @specification = configuration.yaml['specification']
+
+    def initialize(configuration=nil)
+      @configuration = configuration
     end
 
     def raw
-      @specification
+      @specification ||= configuration.yaml['specification']
     end
 
     def parsed 
+      to_base = lambda {|x| Digit.new(x, configuration.inputs.radix)}
       spec = raw.split("\n").map{|x| x.split(" ")}
-      inputs = spec.map(&:first).map(&:to_i)
-      outputs = spec.map(&:last).map(&:to_i)
+      inputs = spec.map(&:first).map(&to_base)
+      outputs = spec.map(&:last).map(&to_base)
       return [inputs, outputs] 
     end
 

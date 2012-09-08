@@ -12,7 +12,7 @@ def usage
   if ARGV.length < 2
     puts <<-USAGE
       USAGE: 
-      generate {#{Functions.join(' | ')} #Variables
+      generate #{Functions.join(' | ')} #Variables {complete}
 
       Ex: generate full_adder 4
     USAGE
@@ -21,6 +21,10 @@ def usage
 end
 
 usage
+yaml = Base::Specification.generate(ARGV[0], 3, ARGV[1].to_i)
+if ARGV[2] == 'complete'
+  yaml = Base::Transformers::Bijector.new(yaml).complete
+end
 
-puts Base::Specification.generate(ARGV[0], 3, ARGV[1].to_i)
+puts yaml
 

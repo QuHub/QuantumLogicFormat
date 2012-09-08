@@ -4,6 +4,7 @@ module Base
       attr_reader :number_of_terms
       def initialize(variables, opts = {:radix => 3})
         @variables = variables
+        @complete = opts[:complete]
         @output = []
         super(@variables.size, opts)
         @number_of_terms = radix**number_of_inputs

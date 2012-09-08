@@ -1,0 +1,23 @@
+
+variables: n
+
+gf{n} Ck Cm Co ... T # Cx is contorl line, and T is target
+pr(k) = {k}A + {m}: 1 < k < n, 0<m<n
+
+binary (n=2)
+  gates:
+    A : wire
+    A+1: inverter
+  
+ternary:(n=3)
+  gates:
+    k=1:
+      m=0: A : wire
+      m=1: A +1
+      m=2: A +2
+
+    k=2:
+      m=0: 2A  
+      m=1: 2A +1
+      m=2: 2A +2
+    

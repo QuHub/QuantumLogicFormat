@@ -1,10 +1,11 @@
 module Base
   class Transformers
     class Bijector
-      attr_accessor :specification, :configuration
-      def initialize(specification)
-        @specification = specification 
-        @configuration = specification.configuration
+      attr_accessor :specification, :configuration, :radix
+      def initialize(yaml)
+        self.configuration = Base::Configuration.new(nil, yaml)
+        self.specification = Base::Specification.new(configuration)
+        self.radix = configuration.default.radix
       end
 
       def complete
@@ -12,29 +13,29 @@ module Base
         # the completed (expanded) input vector
         inputs, outputs = specification.parsed
         inputs = expand_inputs(inputs)
-        outputs = expand_outputs(outputs)
-        outputs = complete_outputs(inputs, outputs)
-      end
+        outputs = complete_outputs(outputs)
+        spec = inputs.zip(outputs).map{|x| x.join(' ')}.join("\n")
 
-
-      def hamming
-
+        configuration.yaml['inputs']['variables'] = total_variables
+        configuration.yaml['outputs']['variables'] = total_variables
+        configuration.yaml['specification'] = spec
+        configuration.yaml.to_yaml
       end
 
       private
-      def complete_outputs(inputs, outputs)
-#hd = hamming_distance(inputs, outputs)
-       
-        # Sort by min hamming distance.
-        # Allocate bits by min hamming distance.
-        # 
-        
+      def complete_outputs(outputs)
+        terms_list = terms_for(total_variables, radix)
+        outputs.map do |term|
+          full_term = terms_list.find {|x| x =~ /#{term}$/ }
+          terms_list.delete(full_term)
+          full_term
+        end
       end
 
       def terms_for(number_of_variables, radix)
         number_of_terms = radix**number_of_variables
         number_of_terms.times.map do |index|
-        Digit.new(index.to_s(radix), :width => number_of_variables)
+          Digit.new(index.to_s(radix), :width => number_of_variables)
         end
       end
 
@@ -58,18 +59,15 @@ module Base
       end
 
       def expand_inputs(inputs)
-        variables_to_complete_inputs.times do 
-          size = inputs.size
-          inputs += inputs.map{|x| x.clone }
-          inputs[0..size-1].map{|x| x.unshift(0)}
-          inputs[size..-1].map{|x| x.unshift(1)}
+        variables_to_complete_input.times do 
+          inputs.map{|x| x.unshift(0)}
         end
 
         inputs
       end
 
       def expand_outputs(outputs)
-        variables_to_complete_inputs.times do 
+        variables_to_complete_input.times do 
           outputs += outputs.map{|x| x.clone }
         end
 
@@ -98,7 +96,6 @@ module Base
           (Math.log(max_count) / Math.log(configuration.outputs.radix)).ceil
         end
       end
-
     end
   end
 end

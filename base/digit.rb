@@ -5,7 +5,7 @@ class Digit < String
     opts = args.extract_options!
     @radix = args[0] || 10
     @width = opts[:width] || value.to_s.length
-    super("%0#{@width}d" % value.to_s)
+    super("%0#{@width}d" % value.to_i)
   end
 
   def unshift(value)

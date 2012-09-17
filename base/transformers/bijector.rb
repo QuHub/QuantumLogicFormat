@@ -12,6 +12,7 @@ module Base
         # add additional terms to statisfy the number of variables of
         # the completed (expanded) input vector
         inputs, outputs = specification.parsed
+        raw_inputs = inputs.clone
         inputs = expand_inputs(inputs)
         outputs = complete_outputs(outputs)
         spec = inputs.map{|i| '  ' + i}.zip(outputs).map{|x| x.join(' ')}.join("\n")
@@ -20,7 +21,7 @@ module Base
         configuration.yaml['outputs']['variables'] = total_variables
         configuration.yaml.delete("specification")
         result = configuration.yaml.to_yaml + "specification: |\n"+ spec
-        result += "\nspecification_linear: |\n  %s:%s " % [configuration.yaml['signature']['function'], radix] + outputs.join(' ')
+        result += "\nspecification_linear: |\n  %s:%s " % [configuration.yaml['signature']['function'], specification.configuration.inputs.variables] + outputs.join(' ')
       end
 
       private

@@ -21,8 +21,10 @@ def usage
 end
 
 usage
+p 'generating specification'
 yaml = Base::Specification.generate(ARGV[0], 3, ARGV[1].to_i)
 if ARGV[2] == 'complete'
+  p 'completing specification'
   yaml = Base::Transformers::Bijector.new(yaml).complete
 end
 

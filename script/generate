@@ -6,7 +6,7 @@ Bundler.require
 
 require './base'
 
-Functions = %w(reflection full_adder quit)
+Functions = %w(reflection full_adder counter1n quit)
 
 def usage
   if ARGV.length < 2

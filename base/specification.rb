@@ -37,7 +37,7 @@ module Base
       variables = ('a'..'z').take(number_of_variables)
       instance = specification_class(function).new(variables, :radix => radix)
 
-      template.render('function' => function, 
+      d = template.render('function' => instance.signature, 
           'radix' => radix, 
           'number_of_inputs' => instance.number_of_inputs, 
           'number_of_outputs' => instance.number_of_outputs, 

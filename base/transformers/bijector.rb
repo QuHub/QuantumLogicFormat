@@ -14,12 +14,13 @@ module Base
         inputs, outputs = specification.parsed
         inputs = expand_inputs(inputs)
         outputs = complete_outputs(outputs)
-        spec = inputs.zip(outputs).map{|x| x.join(' ')}.join("\n")
+        spec = inputs.map{|i| '  ' + i}.zip(outputs).map{|x| x.join(' ')}.join("\n")
 
         configuration.yaml['inputs']['variables'] = total_variables
         configuration.yaml['outputs']['variables'] = total_variables
-        configuration.yaml['specification'] = spec
-        configuration.yaml.to_yaml
+        configuration.yaml.delete("specification")
+        result = configuration.yaml.to_yaml + "specification: |\n"+ spec
+        result += "\nspecification_linear: |\n  %s:%s " % [configuration.yaml['signature']['function'], radix] + outputs.join(' ')
       end
 
       private

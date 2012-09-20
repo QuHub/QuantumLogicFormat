@@ -1,5 +1,5 @@
 signature:
-  function: reflection
+  function: reflection_b3_v2
 
 defaults:
   radix: 3

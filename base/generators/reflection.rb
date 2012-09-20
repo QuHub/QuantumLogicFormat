@@ -13,6 +13,9 @@ module Base
         feynman_ladder(@count) 
       end
 
+      def signature
+        "reflection_b%d_v%d" % [radix, number_of_inputs]
+      end
 
       def feynman_ladder(count)
         0.upto(count-1).each do |i|

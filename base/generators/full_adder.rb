@@ -11,6 +11,10 @@ module Base
         @number_of_outputs= (Math.log(number_of_inputs * (radix-1)) / Math.log(radix)).ceil
       end
 
+      def signature
+        'full_adder_%d' % (number_of_inputs)
+      end
+
       # generates input output specification for specified radix and number of variables
       def specification
         0.upto(number_of_terms-1).map do |i|

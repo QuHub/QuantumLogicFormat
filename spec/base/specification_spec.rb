@@ -40,6 +40,7 @@ describe Base::Specification do
         instance.stub(:number_of_inputs => 3)
         instance.stub(:number_of_outputs => 20)
         instance.stub(:specification => 'what up doc')
+        instance.stub(:signature => 'functor')
 
         described_class.stub(:specification_class => functor)
         described_class.generate('functor', 3, 3).should eql(expected)

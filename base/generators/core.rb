@@ -6,7 +6,7 @@ module Base
         opts = args.extract_options!
         @number_of_inputs = number_of_inputs
         @number_of_outputs = args[0] || @number_of_inputs
-        @radix = opts[:radix]
+        @radix = opts[:radix] || 3
       end
 
       def to_radix(number, number_of_variables = number_of_inputs)

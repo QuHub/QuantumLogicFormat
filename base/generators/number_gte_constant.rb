@@ -28,10 +28,6 @@ module Base
           "%s %s" % [term, output]
         end
       end
-
-      def sum_of_digits(term)
-        term.split('').inject(0) {|sum, e| sum + e.to_i }
-      end
     end
 
     class NumberGte10 < NumberGteConstant

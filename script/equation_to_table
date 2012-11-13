@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
+
+require './base'
+
+p 'generating specification'
+
+equations = [
+  "a0 = a0 & x0 & x1",
+  "a1 = a0 & ~(x0 & x1) ^ a1 & x2",
+  "y = a1 & ~x2",
+  "z = a0 & (x1 ^ x0)"
+]
+
+yaml = Base::Specification.convert(equations)
+if ARGV[0] == 'complete'
+  p 'completing specification'
+  yaml = Base::Transformers::Bijector.new(yaml).complete
+end
+
+puts yaml
+

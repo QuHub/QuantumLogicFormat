@@ -1,29 +1,41 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'bundler'
+require 'optparse'
 
 Bundler.require
 
 require './base'
 
-Functions = %w(reflection full_adder counter1n quit)
+Functions = %w(reflection full_adder counter1n number_gte_10  number_gte_11 number_gte_12 quit)
 
-def usage
-  if ARGV.length < 2
-    puts <<-USAGE
+options = {}
+optparse = OptionParser.new do |opts|
+  opts.banner =<<-USAGE
       USAGE: 
       generate #{Functions.join(' | ')} #Variables {complete}
 
       Ex: generate full_adder 4
     USAGE
+
+  options[:complete] = false
+  opts.on('--complete', "Complete function") {options[:complete] = true}
+
+  opts.on('--target TARGET', "Specify target for NumberGteVariable") do |target|
+    options[:target] = target.to_i
+  end
+
+  opts.on('-h', '--help', "Display online help") do 
+    puts opts
     exit
   end
 end
 
-usage
+optparse.parse!
+
 p 'generating specification'
-yaml = Base::Specification.generate(ARGV[0], 3, ARGV[1].to_i)
-if ARGV[2] == 'complete'
+yaml = Base::Specification.generate(ARGV[0], 3, ARGV[1].to_i, options)
+if options[:complete] 
   p 'completing specification'
   yaml = Base::Transformers::Bijector.new(yaml).complete
 end

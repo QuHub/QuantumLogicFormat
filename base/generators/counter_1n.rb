@@ -41,6 +41,7 @@ module Base
         end
       end
 
+      private
       def count_of_digits(term)
         groups = term.split('').group_by(&:to_s)
         digit_counts = ""

@@ -1,0 +1,55 @@
+"generating specification"
+signature:
+  function: reflection_b3_v3
+
+defaults:
+  radix: 3
+
+inputs:
+  variables: 3
+
+  # variables: n | [i1,i2,i3, ....in]
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [i2, i4,..in]
+
+  
+
+outputs:
+  variables: 3
+  
+  
+  # variables: n | [o1,o2,o3, ....on]
+
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [a2, a4,..an]
+  
+specification: |
+  000 000
+  001 100
+  002 200
+  010 010
+  011 110
+  012 210
+  020 020
+  021 120
+  022 220
+  100 001
+  101 101
+  102 201
+  110 011
+  111 111
+  112 211
+  120 021
+  121 121
+  122 221
+  200 002
+  201 102
+  202 202
+  210 012
+  211 112
+  212 212
+  220 022
+  221 122
+  222 222

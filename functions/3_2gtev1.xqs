@@ -1,0 +1,55 @@
+"generating specification"
+signature:
+  function: 3-2gtev1
+
+defaults:
+  radix: 3
+
+inputs:
+  variables: 2
+
+  # variables: n | [i1,i2,i3, ....in]
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [i2, i4,..in]
+
+  
+
+outputs:
+  variables: 1
+  
+  
+  # variables: n | [o1,o2,o3, ....on]
+
+  # radix: r
+  # radix:
+  #   r: [2, 4, ..n] | [a2, a4,..an]
+  
+specification: |
+  000 1
+  010 1
+  020 1
+  100 1
+  110 1
+  120 1
+  200 1
+  210 1
+  220 1
+  001 0
+  011 1
+  021 1
+  101 1
+  111 1
+  121 1
+  201 1
+  211 1
+  221 1
+  002 0
+  012 0
+  022 1
+  102 1
+  112 1
+  122 1
+  202 1
+  212 1
+  222 1

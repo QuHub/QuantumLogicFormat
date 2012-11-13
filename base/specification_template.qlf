@@ -12,8 +12,15 @@ inputs:
   # radix:
   #   r: [2, 4, ..n] | [i2, i4,..in]
 
+  {% if input_order %}
+  order: {{input_order}}
+  {% endif %}
+
 outputs:
   variables: {{number_of_outputs}}
+  {% if output_order %}
+  order: {{output_order}}
+  {% endif %}
   
   # variables: n | [o1,o2,o3, ....on]
 
